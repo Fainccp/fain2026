@@ -67,6 +67,53 @@
             text-shadow: 4px 4px 0px #000000, -2px -2px 0px #000000, 2px -2px 0px #000000, -2px 2px 0px #000000;
         }
 
+/* Animación título FAIN */
+
+#animatedTitle .letter {
+    display: inline-block;
+    opacity: 0;
+    animation: letterPop 0.5s
+        cubic-bezier(0.2, 1.6, 0.4, 1)
+        forwards;
+}
+
+/* Desfase por letra */
+#animatedTitle .letter:nth-child(1) { animation-delay: 0.05s; }
+#animatedTitle .letter:nth-child(2) { animation-delay: 0.11s; }
+#animatedTitle .letter:nth-child(3) { animation-delay: 0.17s; }
+#animatedTitle .letter:nth-child(4) { animation-delay: 0.23s; }
+#animatedTitle > .letter:nth-child(5) { animation-delay: 0.29s; }
+
+/* Números */
+#animatedTitle .text-fainYellow .letter:nth-child(1) { animation-delay: 0.35s; }
+#animatedTitle .text-fainYellow .letter:nth-child(2) { animation-delay: 0.41s; }
+#animatedTitle .text-fainYellow .letter:nth-child(3) { animation-delay: 0.47s; }
+#animatedTitle .text-fainYellow .letter:nth-child(4) { animation-delay: 0.53s; }
+
+@keyframes letterPop {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) rotate(12deg) scale(0.5);
+    }
+
+    65% {
+        opacity: 1;
+        transform: translateY(-8px) rotate(-4deg) scale(1.12);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #animatedTitle .letter {
+        animation: none;
+        opacity: 1;
+    }
+}
+
         /* Animated Floating Elements */
         @keyframes floatSlow {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -231,9 +278,13 @@
                     </div>
 
                     <!-- Big Title -->
-                    <h1 class="fain-bubble-title text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-none tracking-normal mb-4">
-                        FAIN <span class="text-fainYellow">2026</span>
-                    </h1>
+<h1 id="animatedTitle"
+    aria-label="FAIN 2026"
+    class="fain-bubble-title text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-none tracking-normal mb-4">
+
+    <span class="letter" aria-hidden="true">F</span><span class="letter" aria-hidden="true">A</span><span class="letter" aria-hidden="true">I</span><span class="letter" aria-hidden="true">N</span>
+    <span class="letter" aria-hidden="true">&nbsp;</span><span class="text-fainYellow"><span class="letter" aria-hidden="true">2</span><span class="letter" aria-hidden="true">0</span><span class="letter" aria-hidden="true">2</span><span class="letter" aria-hidden="true">6</span></span>
+</h1>
 
                     <p class="font-bubble text-2xl sm:text-3xl text-fainYellow font-bold mb-4 drop-shadow-md">
                         Festival de Animación Digital INACAP
